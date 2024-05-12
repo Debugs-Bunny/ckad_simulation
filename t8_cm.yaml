@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  secret-coach.txt: |
+    name: Carlo
+    age: 26
+    code-name: Hero
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: secret-coach
