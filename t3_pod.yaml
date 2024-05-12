@@ -1,0 +1,109 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-05-12T08:08:46Z"
+  labels:
+    run: backend-pod
+  name: backend-pod
+  namespace: default
+  resourceVersion: "968"
+  uid: 5ea0f026-17d7-4acf-af55-0a06402f311a
+spec:
+  containers:
+  - image: redis
+    env:
+        - name: NAME # Notice that the case is different here
+          valueFrom:
+            configMapKeyRef:
+              name: tech-acad           # The ConfigMap this value comes from.
+              key: name # The key to fetch.
+        - name: ROLE
+          valueFrom:
+            configMapKeyRef:
+              name: tech-acad
+              key: role
+    imagePullPolicy: Always
+    name: backend-pod
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-g9m86
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-g9m86
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-12T08:08:46Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-12T08:09:18Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-12T08:09:18Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-05-12T08:08:46Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://bc8bd7a903e2c84ab769a3dd87d3caaee2dcadf075eb7033b8919efba2bc67a2
+    image: redis:latest
+    imageID: docker-pullable://redis@sha256:f14f42fc7e824b93c0e2fe3cdf42f68197ee0311c3d2e0235be37480b2e208e6
+    lastState: {}
+    name: backend-pod
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-05-12T08:09:17Z"
+  hostIP: 192.168.49.2
+  phase: Running
+  podIP: 10.244.0.8
+  podIPs:
+  - ip: 10.244.0.8
+  qosClass: BestEffort
+  startTime: "2024-05-12T08:08:46Z"
