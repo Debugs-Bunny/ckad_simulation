@@ -9,7 +9,7 @@ items:
     creationTimestamp: "2024-05-16T01:47:06Z"
     name: busy
     namespace: apper
-    resourceVersion: "21173"
+    resourceVersion: "38570"
     uid: 0ecf4b46-8e00-4de3-969d-7cfce48a2e34
   spec:
     containers:
@@ -76,11 +76,11 @@ items:
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-05-16T01:47:10Z"
+      lastTransitionTime: "2024-05-16T07:47:28Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-05-16T01:47:10Z"
+      lastTransitionTime: "2024-05-16T07:47:28Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
@@ -88,17 +88,23 @@ items:
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://5555f2afee173f21b2b3b3619fbdf3f372348fa4139f151147b08a4944399c5e
+    - containerID: docker://125f3970adefceeaf7848a69a19f65ac1ebd7c1416f6449127a5620336d5e270
       image: busybox:latest
       imageID: docker-pullable://busybox@sha256:5eef5ed34e1e1ff0a4ae850395cbf665c4de6b4b83a32a0bc7bcb998e24e7bbb
-      lastState: {}
+      lastState:
+        terminated:
+          containerID: docker://0f2cce430402e0882312a9f42189deb27fa92e227a0595c41bcdf5a59c4201dd
+          exitCode: 0
+          finishedAt: "2024-05-16T07:47:25Z"
+          reason: Completed
+          startedAt: "2024-05-16T06:47:25Z"
       name: busy
       ready: true
-      restartCount: 0
+      restartCount: 6
       started: true
       state:
         running:
-          startedAt: "2024-05-16T01:47:09Z"
+          startedAt: "2024-05-16T07:47:27Z"
     hostIP: 192.168.49.2
     phase: Running
     podIP: 10.244.0.50
@@ -692,16 +698,13 @@ items:
 - apiVersion: v1
   kind: Pod
   metadata:
-    annotations:
-      kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"creationTimestamp":"2024-05-12T08:08:47Z","labels":{"run":"sa-pod"},"name":"sa-pod","namespace":"default","resourceVersion":"1013","uid":"9f59f272-4097-4ae0-be35-6e65a0a22ced"},"spec":{"containers":[{"image":"nginx","imagePullPolicy":"Always","name":"sa-pod","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","volumeMounts":[{"mountPath":"/etc/secret","name":"admin-token"},{"mountPath":"/var/run/secrets/kubernetes.io/serviceaccount","name":"kube-api-access-mhn47","readOnly":true}]}],"dnsPolicy":"ClusterFirst","enableServiceLinks":true,"nodeName":"minikube","preemptionPolicy":"PreemptLowerPriority","priority":0,"restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30,"tolerations":[{"effect":"NoExecute","key":"node.kubernetes.io/not-ready","operator":"Exists","tolerationSeconds":300},{"effect":"NoExecute","key":"node.kubernetes.io/unreachable","operator":"Exists","tolerationSeconds":300}],"volumes":[{"name":"admin-token","projected":{"sources":[{"serviceAccountToken":{"audience":"admin","expirationSeconds":7200,"path":"admin-token"}}]}},{"name":"kube-api-access-mhn47","projected":{"defaultMode":420,"sources":[{"serviceAccountToken":{"expirationSeconds":3607,"path":"token"}},{"configMap":{"items":[{"key":"ca.crt","path":"ca.crt"}],"name":"kube-root-ca.crt"}},{"downwardAPI":{"items":[{"fieldRef":{"apiVersion":"v1","fieldPath":"metadata.namespace"},"path":"namespace"}]}}]}}]},"status":{"conditions":[{"lastProbeTime":null,"lastTransitionTime":"2024-05-12T08:08:47Z","status":"True","type":"Initialized"},{"lastProbeTime":null,"lastTransitionTime":"2024-05-12T08:09:35Z","status":"True","type":"Ready"},{"lastProbeTime":null,"lastTransitionTime":"2024-05-12T08:09:35Z","status":"True","type":"ContainersReady"},{"lastProbeTime":null,"lastTransitionTime":"2024-05-12T08:08:47Z","status":"True","type":"PodScheduled"}],"containerStatuses":[{"containerID":"docker://c6225d1208b6a60a1c901a7260b9f325c6920e7cccfa8737e03a1f94b8f01d2a","image":"nginx:latest","imageID":"docker-pullable://nginx@sha256:32e76d4f34f80e479964a0fbd4c5b4f6967b5322c8d004e9cf0cb81c93510766","lastState":{},"name":"sa-pod","ready":true,"restartCount":0,"started":true,"state":{"running":{"startedAt":"2024-05-12T08:09:35Z"}}}],"hostIP":"192.168.49.2","phase":"Running","podIP":"10.244.0.16","podIPs":[{"ip":"10.244.0.16"}],"qosClass":"BestEffort","startTime":"2024-05-12T08:08:47Z"}}
-    creationTimestamp: "2024-05-16T02:16:40Z"
+    creationTimestamp: "2024-05-16T06:09:51Z"
     labels:
       run: sa-pod
     name: sa-pod
     namespace: default
-    resourceVersion: "22603"
-    uid: 8b13f33a-1552-47a7-b716-fe2467b2f068
+    resourceVersion: "33880"
+    uid: 9740b50c-695f-4cfd-9fe3-bbf388a6e2e7
   spec:
     containers:
     - image: nginx
@@ -724,8 +727,8 @@ items:
     restartPolicy: Always
     schedulerName: default-scheduler
     securityContext: {}
-    serviceAccount: default
-    serviceAccountName: default
+    serviceAccount: admin
+    serviceAccountName: admin
     terminationGracePeriodSeconds: 30
     tolerations:
     - effect: NoExecute
@@ -766,23 +769,23 @@ items:
   status:
     conditions:
     - lastProbeTime: null
-      lastTransitionTime: "2024-05-16T02:16:40Z"
+      lastTransitionTime: "2024-05-16T06:09:51Z"
       status: "True"
       type: Initialized
     - lastProbeTime: null
-      lastTransitionTime: "2024-05-16T02:16:44Z"
+      lastTransitionTime: "2024-05-16T06:09:55Z"
       status: "True"
       type: Ready
     - lastProbeTime: null
-      lastTransitionTime: "2024-05-16T02:16:44Z"
+      lastTransitionTime: "2024-05-16T06:09:55Z"
       status: "True"
       type: ContainersReady
     - lastProbeTime: null
-      lastTransitionTime: "2024-05-16T02:16:40Z"
+      lastTransitionTime: "2024-05-16T06:09:51Z"
       status: "True"
       type: PodScheduled
     containerStatuses:
-    - containerID: docker://f509f2fc4431aff10e409b68d1c1ec2c7e744f108b079bb207e6688825571165
+    - containerID: docker://edf8d180bb2884a1e3a091a84b487ca84f9943bae642b66bdb881daccac1a017
       image: nginx:latest
       imageID: docker-pullable://nginx@sha256:a484819eb60211f5299034ac80f6a681b06f89e65866ce91f356ed7c72af059c
       lastState: {}
@@ -792,14 +795,14 @@ items:
       started: true
       state:
         running:
-          startedAt: "2024-05-16T02:16:44Z"
+          startedAt: "2024-05-16T06:09:55Z"
     hostIP: 192.168.49.2
     phase: Running
-    podIP: 10.244.0.51
+    podIP: 10.244.0.54
     podIPs:
-    - ip: 10.244.0.51
+    - ip: 10.244.0.54
     qosClass: BestEffort
-    startTime: "2024-05-16T02:16:40Z"
+    startTime: "2024-05-16T06:09:51Z"
 - apiVersion: v1
   kind: Pod
   metadata:
@@ -4159,25 +4162,3 @@ items:
 kind: List
 metadata:
   resourceVersion: ""
-# -------------------------------------------------------
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: np
-  namespace: rollout
-spec:
-  podSelector: {}
-  policyTypes:
-  - Egress
-  egress:
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          kubernetes.io/metadata.name: rollout
-    ports:
-    - protocol: TCP
-      port: 53
-    - protocol: UDP
-      port: 53
-
-
