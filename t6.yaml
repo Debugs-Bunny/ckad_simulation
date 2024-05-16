@@ -7,6 +7,8 @@ metadata:
   resourceVersion: "3973"
   uid: ceecb4fe-8fa5-4afc-9d58-d6bff1924116
 spec:
+  securityContext:
+    runAsUser: 2000
   containers:
   - command:
     - sh
@@ -14,7 +16,6 @@ spec:
     - sleep 1h
     image: busybox
     securityContext:
-      runAsUser: 2000
       allowPrivilegeEscalation: false
     imagePullPolicy: Always
     name: busy
@@ -32,7 +33,6 @@ spec:
   priority: 0
   restartPolicy: Always
   schedulerName: default-scheduler
-  securityContext: {}
   serviceAccount: default
   serviceAccountName: default
   terminationGracePeriodSeconds: 30
